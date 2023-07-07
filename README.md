@@ -11,7 +11,11 @@
 4. JPA
 5. Mockito
 6. Lombok
-7. swagger
+7. Security
+8. Redis
+9. jsoup
+10. jjwt
+11. collections4
 ## 제공하는 기능(API)
 ### 회사(Company) 관련 기능
 1. 회사 이름으로 해당 회사의 메타 정보와 배당금 정보를 반환
