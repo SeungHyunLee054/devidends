@@ -6,7 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.Objects;
 
 @Slf4j
 @ControllerAdvice
@@ -21,7 +22,7 @@ public class CustomExceptionHandler {
                 .message(e.getMessage())
                 .build();
         return new ResponseEntity<>(errorResponse,
-                HttpStatus.resolve(e.getStatusCode()));
+                Objects.requireNonNull(HttpStatus.resolve(e.getStatusCode())));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -33,7 +34,7 @@ public class CustomExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(errorResponse,
-                HttpStatus.resolve(HttpStatus.FORBIDDEN.value()));
+                Objects.requireNonNull(HttpStatus.resolve(HttpStatus.FORBIDDEN.value())));
     }
 
     @ExceptionHandler(Exception.class)
@@ -45,6 +46,6 @@ public class CustomExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(errorResponse,
-                HttpStatus.resolve(HttpStatus.BAD_REQUEST.value()));
+                Objects.requireNonNull(HttpStatus.resolve(HttpStatus.BAD_REQUEST.value())));
     }
 }
